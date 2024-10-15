@@ -38,3 +38,24 @@ const fetchAdviceById = (id) => {
 }
 
 fetchAdviceById(15);
+
+const rollDiceAndJoke = () => {
+    const diceRoll = Math.floor(Math.random() * 6) + 1;
+    console.log(`You rolled a ${diceRoll}`); 
+
+    if (diceRoll === 6) {
+        console.log('Yay, you got a six! Fetching a joke...');
+        fetch('https://official-joke-api.appspot.com/jokes/random')
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch joke');
+            }
+            return response.json();
+       })
+       .then((data) => {
+            console.log(`Joke: ${data.setup}...${data.punchline}`);
+        })
+    }
+}
+
+rollDiceAndJoke();
