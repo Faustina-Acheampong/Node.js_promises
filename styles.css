@@ -45,6 +45,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 15px;
   }
   
   button:hover {
@@ -55,5 +56,51 @@ body {
     font-size: 18px;
     color: #333;
     margin-top: 20px;
+  }
+
+  /* Flashing animation for dice result */
+@keyframes flash {
+    0% {
+      opacity: 1;
+      color: #fff;
+      text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000;
+    }
+    50% {
+      opacity: 0.5;
+      color: #ff0000;
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #fff;
+    }
+    100% {
+      opacity: 1;
+      color: #fff;
+      text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000;
+    }
+  }
+  
+  #diceResult {
+    font-size: 2rem;
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+    animation: flash 1.5s infinite;
+  }
+  
+  /*styling for joke display */
+#jokeDisplay {
+    font-size: 1rem;
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(45deg, #ff00cc, #3333ff);
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  /* Add hover effect */
+  #jokeDisplay:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
   }
   
