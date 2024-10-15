@@ -20,13 +20,27 @@ const fetchJokeById = async () => {
 };
 
     const rollDice = () => {
-        const diceRoll = Math.floor(Math.random() * 6) + 1;
-        document.getElementById('diceResult').textContent = `You rolled a ${diceRoll}`;
+        return new Promise((resolve, reject) => {
+            const diceRoll = Math.floor(Math.random() * 6) + 1;
+            document.getElementById('diceResult').textContent = `You rolled a ${diceRoll}`;
 
-    if (diceRoll === 6) {
-        console.log('Yay, you got a six! Fetching a joke...');
+        if (diceRoll === 6) {
+            console.log('Yay, you got a six! Fetching a joke...');
+            resolve('Yay, you rolled a six!');
+        } else {
+            reject('Try again! No joke this time.');
+        }
+    });
+}; 
 
-    fetch('https://official-joke-api.appspot.com/jokes/random')   
+//handle dice roll with async/await and fetch a joke if the dice roll is 6
+    const handleDiceRoll = async () => {
+        try {
+            const result = await rollDice();
+            console.log(result);
+
+            const response = await fetch('https://official-joke-api.appspot.com/jokes/random');
+
     .then((response) => response.json()) 
     .then((data) => {
         const joke = `${data.setup} \n ${data.punchline}`;
